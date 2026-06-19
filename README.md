@@ -1,24 +1,61 @@
-# tree-sitter-PARSER_NAME
+# tree-sitter-jte
 
-[![CI][ci]](https://github.com/tree-sitter-grammars/tree-sitter-PARSER_NAME/actions/workflows/ci.yml)
-[![discord][discord]](https://discord.gg/w7nTvsVJhm)
-[![matrix][matrix]](https://matrix.to/#/#tree-sitter-chat:matrix.org)
-<!-- NOTE: uncomment these if you're publishing packages: -->
-<!-- [![npm][npm]](https://www.npmjs.com/package/tree-sitter-PARSER_NAME) -->
-<!-- [![crates][crates]](https://crates.io/crates/tree-sitter-PARSER_NAME) -->
-<!-- [![pypi][pypi]](https://pypi.org/project/tree-sitter-PARSER_NAME/) -->
-<!-- [![maven][maven]](https://central.sonatype.com/artifact/io.github.tree-sitter-grammars/tree-sitter-PARSER_NAME) -->
+A Tree-sitter parser for [JTE](https://jte.gg/) (Java Template Engine) templates.
 
-A Tree-sitter parser for PARSER_NAME files.
+## Installation
+
+### Neovim
+
+Since this parser is not yet in the nvim-treesitter registry, you can install it as a local parser:
+
+```lua
+require('nvim-treesitter').setup({
+  local_parsers = {
+    jte = {
+      source = {
+        type = 'local',
+        path = '~/path/to/tree-sitter-jte',
+        queries_path = 'queries',
+      },
+      filetypes = { 'jte', 'kte' },
+    },
+  },
+})
+```
+
+Then run:
+```vim
+:TSInstall jte
+```
+
+### Filetype Detection
+
+Add this to your Neovim config to automatically detect `.jte` and `.kte` files:
+
+```lua
+vim.filetype.add({
+  extension = {
+    jte = 'jte',
+    kte = 'kte',
+  },
+})
+```
+
+Or create a file `~/.config/nvim/ftdetect/jte.lua` with:
+
+```lua
+vim.filetype.add({
+  extension = {
+    jte = 'jte',
+    kte = 'kte',
+  },
+})
+```
+
+A ready-to-use snippet is also provided in this repository at `nvim/ftdetect/jte.lua`.
 
 ## References
 
-<!-- NOTE: add the grammar's references here -->
-
-[ci]: https://img.shields.io/github/actions/workflow/status/tree-sitter-grammars/tree-sitter-PARSER_NAME/ci.yml?logo=github&label=CI
-[discord]: https://img.shields.io/discord/1063097320771698699?logo=discord&label=discord
-[matrix]: https://img.shields.io/matrix/tree-sitter-chat%3Amatrix.org?logo=matrix&label=matrix
-[npm]: https://img.shields.io/npm/v/tree-sitter-PARSER_NAME?logo=npm
-[crates]: https://img.shields.io/crates/v/tree-sitter-PARSER_NAME?logo=rust
-[pypi]: https://img.shields.io/pypi/v/tree-sitter-PARSER_NAME?logo=pypi&logoColor=ffd242
-[maven]: https://img.shields.io/maven-central/v/io.github.tree-sitter-grammars/tree-sitter-PARSER_NAME?logo=sonatype
+- [JTE Documentation](https://jte.gg/)
+- [Tree-sitter](https://tree-sitter.github.io/)
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)

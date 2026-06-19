@@ -1,0 +1,124 @@
+===
+Basic JTE constructs
+===
+
+@import org.example.Page
+@param Page page
+<%-- comment block --%>
+@if(page.getDescription() != null)
+    <meta name="description" content="${page.getDescription()}">
+@endif
+@for(int i=0; i<10; i++)
+    <p>${i}</p>
+@endfor
+
+---
+
+(source_file
+  (jte_declaration)
+  (jte_declaration)
+  (jte_comment)
+  (jte_control_statement)
+  (text)
+  (jte_expression
+    (java_expression
+      (parenthesized)))
+  (text)
+  (jte_keyword)
+  (jte_control_statement)
+  (text)
+  (jte_expression
+    (java_expression))
+  (text)
+  (jte_keyword)
+  (text))
+
+===
+Unescaped expression
+===
+
+!{content}
+
+---
+
+(source_file
+  (jte_expression
+    (java_expression))
+  (text))
+
+===
+Nested braces in expression
+===
+
+${for(int i=0; i<10; i++){ i++;} page.getDescription()}
+
+---
+
+(source_file
+  (jte_expression
+    (java_expression
+      (parenthesized
+        (java_expression))
+      (block
+        (java_expression))
+      (parenthesized)))
+  (text))
+
+===
+Plain HTML text
+===
+
+<html>
+<body>
+    <h1>Hello World</h1>
+</body>
+</html>
+
+---
+
+(source_file
+  (text))
+
+===
+Mixed content
+===
+
+<head>
+    <title>${page.getTitle()}</title>
+</head>
+
+---
+
+(source_file
+  (text)
+  (jte_expression
+    (java_expression
+      (parenthesized)))
+  (text))
+
+===
+Keywords as text
+===
+
+@importx foo
+@templatex bar
+
+---
+
+(source_file
+  (text))
+
+===
+Expression with strings
+===
+
+${"hello" + 'world'}
+
+---
+
+(source_file
+  (jte_expression
+    (java_expression
+      (string)
+      (string)))
+  (text))

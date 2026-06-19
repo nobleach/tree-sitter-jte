@@ -1,0 +1,25 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "jte",
+      "scope": "source.jte",
+      "file-types": ["jte", "kte"],
+      "injection-regex": "^jte$",
+      "highlights": "queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "links": {
+      "repository": "https://github.com/jim/tree-sitter-jte"
+    },
+    "namespace": "io.github.jim",
+    "version": "0.1.0",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "jim"
+      }
+    ]
+  }
+}
